@@ -332,7 +332,7 @@ resource "aws_instance" "cloudpulse" {
     cat <<SVC_EOF > /etc/systemd/system/cloudpulse.service
     [Unit]
     Description=CloudPulse Flask App
-    After=network.target
+    After=network.target cloud-final.target
 
     [Service]
     User=root

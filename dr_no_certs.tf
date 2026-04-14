@@ -838,7 +838,7 @@ resource "aws_launch_template" "nc_dr_lt_primary" {
     cat <<SVC_EOF > /etc/systemd/system/cloudpulse.service
     [Unit]
     Description=CloudPulse Flask App
-    After=network.target
+    After=network.target cloud-final.target
     [Service]
     User=root
     WorkingDirectory=/home/ec2-user/app
@@ -914,7 +914,7 @@ resource "aws_launch_template" "nc_dr_lt_secondary" {
     cat <<SVC_EOF > /etc/systemd/system/cloudpulse.service
     [Unit]
     Description=CloudPulse Flask App
-    After=network.target
+    After=network.target cloud-final.target
     [Service]
     User=root
     WorkingDirectory=/home/ec2-user/app
