@@ -35,12 +35,12 @@ jobs:
         # silently show "AI insight unavailable" after a full deploy.
         run: |
           if ! aws bedrock-runtime invoke-model \
-            --region us-east-1 \
+            --region us-east-2 \
             --model-id amazon.nova-lite-v1:0 \
             --body '{"messages":[{"role":"user","content":[{"text":"ping"}]}],"inferenceConfig":{"maxTokens":1}}' \
             --cli-binary-format raw-in-base64-out \
             /tmp/bedrock-check.json 2> /tmp/bedrock-err.txt; then
-            echo "::error::Cannot invoke Nova Lite in us-east-1. Most likely cause: model access was not granted in the Bedrock console. See README step 5."
+            echo "::error::Cannot invoke Nova Lite in us-east-2. Most likely cause: model access was not granted in the Bedrock console. See README step 5."
             echo "AWS CLI error output:"
             cat /tmp/bedrock-err.txt
             exit 1

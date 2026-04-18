@@ -796,7 +796,7 @@ resource "aws_iam_role_policy" "nc_dr_iam_ec2_policy" {
         Effect = "Allow"
         Action = ["bedrock:InvokeModel"]
         Resource = [
-          "arn:aws:bedrock:us-east-1::foundation-model/${var.bedrock_model_id}"
+          "arn:aws:bedrock:us-east-2::foundation-model/${var.bedrock_model_id}"
         ]
       }
     ]
@@ -840,7 +840,7 @@ resource "aws_launch_template" "nc_dr_lt_primary" {
     aws_region       = data.aws_region.nc_dr_primary.name,
     image_key        = var.background_image_key,
     bedrock_model_id = var.bedrock_model_id,
-    bedrock_region   = "us-east-1"
+    bedrock_region   = "us-east-2"
 })}
     PY_EOF
     cat <<SVC_EOF > /etc/systemd/system/cloudpulse.service
@@ -917,7 +917,7 @@ resource "aws_launch_template" "nc_dr_lt_secondary" {
     aws_region       = data.aws_region.nc_dr_secondary_region.name,
     image_key        = var.background_image_key,
     bedrock_model_id = var.bedrock_model_id,
-    bedrock_region   = "us-east-1"
+    bedrock_region   = "us-east-2"
 })}
     PY_EOF
     cat <<SVC_EOF > /etc/systemd/system/cloudpulse.service
